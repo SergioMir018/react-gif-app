@@ -13,7 +13,7 @@ export const GifApp = () => {
 
   return (
     <>
-      <h2> GifApp </h2>
+      <h2 className='GifApp-main-title'> GifApp </h2>
       <AddCategory />
       <hr />
 
