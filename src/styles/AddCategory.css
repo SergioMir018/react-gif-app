@@ -2,10 +2,12 @@ input {
   border-radius: 5px;
   border-style: none;
   background-color: rgba(57, 65, 78, 0.644);
+  font-size: 1rem;
   padding-block: 10px;
   padding-left: 10px;
-  padding-right: 10px;
-  width: 100%;
+  padding-right: 5px;
+  position: relative;
+  width: 96%;
 }
 
 input:focus {
@@ -13,8 +15,27 @@ input:focus {
 }
 
 .searchBar {
-  width: 100%;
-  border-radius: 5px;
+  display: flex;
+  align-items: center;
   border-style: dashed;
   border-color: rgba(109, 125, 150, 0.644);
+  border-radius: 20px;
+}
+
+.search-button {
+  background-image: url('../components/AddCategoryComponent/images/20310985681681810443-128.png');
+  background-color: rgba(57, 65, 78, 0.644);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:contain;
+  border-radius: 10px;
+  border:transparent;
+  border-top: 20px;
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+}
+
+.search-button img {
+  margin: 100px;
 }
