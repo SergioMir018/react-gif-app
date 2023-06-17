@@ -1,4 +1,5 @@
 import React, { FormEvent, useState } from 'react'
+import PropTypes from 'prop-types';
 
 import "../../styles/AddCategory.css"
 interface AddCategoryProps {
@@ -16,7 +17,10 @@ export const AddCategory = ( { setCategories }: AddCategoryProps ) => {
   const handleSubmit = ( e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    setCategories( categories => [...categories, inputValue]);
+    if ( inputValue.length > 2 ) {
+      setCategories( categories => [...categories, inputValue]);
+      setInputValue("");
+    }
   }
 
   return (
@@ -31,4 +35,8 @@ export const AddCategory = ( { setCategories }: AddCategoryProps ) => {
       </form>
     </div>
   )
+}
+
+AddCategory.protoTypes = {
+  setCategories : PropTypes.func.isRequired
 }
