@@ -1,10 +1,20 @@
 input {
-  width: 100%;
   border-radius: 5px;
-  border-style: solid;
+  border-style: none;
   background-color: rgba(57, 65, 78, 0.644);
+  padding-block: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
 }
 
 input:focus {
   outline: none;
+}
+
+.searchBar {
+  width: 100%;
+  border-radius: 5px;
+  border-style: dashed;
+  border-color: rgba(109, 125, 150, 0.644);
 }
