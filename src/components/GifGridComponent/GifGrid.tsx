@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
+
 import { GifGridItem } from './GifGridItemComponent/GifGridItem'
+
+import '../../styles/GifGrid.css'
 
 interface GifGridProps {
   category: string
@@ -50,7 +53,7 @@ export const GifGrid = ( { category }: GifGridProps ) => {
   }
 
   return (
-    <div>
+    <div className='card-grid'>
       <h3> { category } </h3>
       {
         gifImages.map( (  img: GifImage ) => (
