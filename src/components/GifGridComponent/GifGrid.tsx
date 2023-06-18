@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { GifGridItem } from './GifGridItemComponent/GifGridItem'
 
 import '../../styles/GifGrid.css'
+import { getGifs } from '../../helpers/getGifs'
 
-interface GifGridProps {
+export interface GifGridProps {
   category: string
 }
 
-interface GifAPIData {
+export interface GifAPIData {
   id: string,
   title: string,
   images: {
@@ -29,28 +30,9 @@ export const GifGrid = ( { category }: GifGridProps ) => {
   const [gifImages, setGifImages] = useState< GifImage[] >( [] );
 
   useEffect( () => {
-    getGifs();
-  }, [] )
-  
-
-  const getGifs = async() => {
-    
-    const url = `https://api.giphy.com/v1/gifs/search?q=${ encodeURI( category ) }{}&limit=10&api_key=D8H1MJ9wPYEBqN3JyTB8fLKyGwXI0LUD`;
-
-    const resp = await fetch( url );
-    const { data } = await resp.json();
-
-    const gifs = data.map( ( img: GifAPIData ) => {
-      return {
-        id: img.id,
-        title: img.title,
-        url: img.images?.downsized_medium.url
-      }
-    } );
-
-    console.log( gifs );
-    setGifImages( gifs );
-  }
+    getGifs( category )
+      .then( setGifImages );
+  }, [ category ] )
 
   return (
     <>
