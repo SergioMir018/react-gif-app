@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { GifGridItem } from './GifGridItemComponent/GifGridItem'
 
 interface GifGridProps {
   category: string
 }
 
-interface GifData {
+interface GifAPIData {
   id: string,
   title: string,
   images: {
@@ -14,9 +15,15 @@ interface GifData {
     }
 }
 
+export interface GifImage {
+  id: string,
+  title: string,
+  url: string
+}
+
 export const GifGrid = ( { category }: GifGridProps ) => {
 
-  const [gifImages, setGifImages] = useState< GifData[] >( [] );
+  const [gifImages, setGifImages] = useState< GifImage[] >( [] );
 
   useEffect( () => {
     getGifs();
@@ -30,7 +37,7 @@ export const GifGrid = ( { category }: GifGridProps ) => {
     const resp = await fetch( url );
     const { data } = await resp.json();
 
-    const gifs = data.map( ( img: GifData ) => {
+    const gifs = data.map( ( img: GifAPIData ) => {
       return {
         id: img.id,
         title: img.title,
@@ -45,13 +52,11 @@ export const GifGrid = ( { category }: GifGridProps ) => {
   return (
     <div>
       <h3> { category } </h3>
-      <ul>
-        {
-          gifImages.map( (gif: GifData ) => {
-            return <li> { gif.title } </li>
-          } )
-        }
-      </ul>
+      {
+        gifImages.map( (  img: GifImage ) => (
+          <GifGridItem key={ img.id } gif={ img }/>
+        ))
+      }
     </div>
   )
 }
