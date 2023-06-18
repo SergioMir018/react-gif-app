@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { AddCategory } from './components/AddCategoryComponent/AddCategory.tsx';
+import { GifGrid } from './components/GifGridComponent/GifGrid.tsx';
 
 export const GifApp = () => {
 
-  const [categories, setCategories] = useState(['Dragon Ball', 'The Boys', 'Breaking Bad']);
+  const [categories, setCategories] = useState(['Dragon Ball']);
 
   return (
     <>
@@ -13,9 +14,9 @@ export const GifApp = () => {
 
       <ol>
         {
-          categories.map( ( category: string ) => {
-            return <li key= { category }> { category } </li>
-          } )
+          categories.map( ( category: string ) => (
+            <GifGrid key={ category } category={ category }/>
+          ))
         }
       </ol>
     </>
