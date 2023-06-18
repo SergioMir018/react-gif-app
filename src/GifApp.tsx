@@ -4,7 +4,7 @@ import { GifGrid } from './components/GifGridComponent/GifGrid.tsx';
 
 export const GifApp = () => {
 
-  const [categories, setCategories] = useState([""]);
+  const [categories, setCategories] = useState<string[]>([""]);
 
   return (
     <>
@@ -14,7 +14,7 @@ export const GifApp = () => {
 
       <ol>
         {
-          categories.map( ( category: string ) => (
+          categories.slice( 0, 5 ).map( ( category: string ) => (
             <GifGrid key={ category } category={ category }/>
           ))
         }

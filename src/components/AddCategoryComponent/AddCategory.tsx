@@ -17,8 +17,8 @@ export const AddCategory = ( { setCategories }: AddCategoryProps ) => {
   const handleSubmit = ( e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    if ( inputValue.length > 2 ) {
-      setCategories( categories => [...categories, inputValue]);
+    if ( inputValue.length >= 2 ) {
+      setCategories( categories => [ inputValue, ...categories]);
       setInputValue("");
     }
   }

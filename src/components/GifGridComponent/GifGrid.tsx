@@ -35,7 +35,7 @@ export const GifGrid = ( { category }: GifGridProps ) => {
 
   const getGifs = async() => {
     
-    const url = 'https://api.giphy.com/v1/gifs/search?q=One+Piece&limit=10&api_key=D8H1MJ9wPYEBqN3JyTB8fLKyGwXI0LUD';
+    const url = `https://api.giphy.com/v1/gifs/search?q=${ encodeURI( category ) }{}&limit=10&api_key=D8H1MJ9wPYEBqN3JyTB8fLKyGwXI0LUD`;
 
     const resp = await fetch( url );
     const { data } = await resp.json();
@@ -53,13 +53,15 @@ export const GifGrid = ( { category }: GifGridProps ) => {
   }
 
   return (
-    <div className='card-grid'>
+    <>
       <h3> { category } </h3>
-      {
-        gifImages.map( (  img: GifImage ) => (
-          <GifGridItem key={ img.id } gif={ img }/>
-        ))
-      }
-    </div>
+      <div className='card-grid'>
+        {
+          gifImages.map( (  img: GifImage ) => (
+            <GifGridItem key={ img.id } gif={ img }/>
+          ))
+        }
+      </div>    
+    </>
   )
 }
