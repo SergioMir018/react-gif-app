@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 import { GifGridItem } from './GifGridItemComponent/GifGridItem'
 
@@ -31,8 +31,9 @@ export const GifGrid = ( { category }: GifGridProps ) => {
 
   return (
     <>
-      <h3> { category } </h3>
+      <h3 className='animate__animated animate__fadeIn'> { category } </h3>
 
+      { loading && <h2 className='animate__animated animate__flash'> Loading... </h2> }
       <div className='card-grid'>
         {
           data.map( (  img: GifImage ) => (
