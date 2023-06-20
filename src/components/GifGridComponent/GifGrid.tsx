@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { GifGridItem } from './GifGridItemComponent/GifGridItem'
 
 import '../../styles/GifGrid.css'
-import { getGifs } from '../../helpers/getGifs'
+import { useFetchGifs } from '../../hooks/useFetchGifs';
 
 export interface GifGridProps {
   category: string
@@ -27,19 +27,15 @@ export interface GifImage {
 
 export const GifGrid = ( { category }: GifGridProps ) => {
 
-  const [gifImages, setGifImages] = useState< GifImage[] >( [] );
-
-  useEffect( () => {
-    getGifs( category )
-      .then( setGifImages );
-  }, [ category ] )
+  const {  data ,loading } = useFetchGifs( category );
 
   return (
     <>
       <h3> { category } </h3>
+
       <div className='card-grid'>
         {
-          gifImages.map( (  img: GifImage ) => (
+          data.map( (  img: GifImage ) => (
             <GifGridItem key={ img.id } gif={ img }/>
           ))
         }
